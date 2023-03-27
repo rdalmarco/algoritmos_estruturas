@@ -8,8 +8,4 @@ public class No {
     public No prox = null;
     public No ant = null;
 
-    public No() {
-
-    }
-
 }
