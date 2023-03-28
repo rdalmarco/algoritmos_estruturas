@@ -23,17 +23,18 @@ public class App {
         }
 
         No aux = inicio;
-        while (aux.prox != null) {
-            aux = aux.prox;
-        }
-
         aux.de.imprime(aux.de.start());
+        while (aux.prox != null) {
+            aux = aux.prox; 
+            aux.de.imprime(aux.de.start());
+        }
+        
 
     }
 
     public static void insereLista(int dividendo, int divisor) {
         if (inicio == null) {
-            No inicio = new No();
+            inicio = new No();
             inicio.de = new DivisaoEuclidiana(dividendo, divisor);
         } else {
             No novo = new No();
