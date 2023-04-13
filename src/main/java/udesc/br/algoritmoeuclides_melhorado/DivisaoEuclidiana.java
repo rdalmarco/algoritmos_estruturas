@@ -7,8 +7,8 @@ public class DivisaoEuclidiana {
 
     public int dividendo = 0;
     public int divisor = 0;
-    public DivisaoEuclidiana prox = null;
-    public DivisaoEuclidiana ant = null;
+  //  public DivisaoEuclidiana prox = null;
+  //  public DivisaoEuclidiana ant = null;
 
     public DivisaoEuclidiana(int dividendo, int divisor) {
         this.dividendo = dividendo;

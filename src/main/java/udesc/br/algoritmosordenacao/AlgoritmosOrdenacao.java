@@ -50,13 +50,13 @@ public class AlgoritmosOrdenacao {
 
     }
 
-    public static void QuickSort(int[] valores) {
+  public static int Particiona(int[] valores, int esq, int dir) {
 
-        int pivo = valores[valores.length - 1];
+        int pivo = valores[dir];
         int guardaVal = 0;
-        int lugarFila = 0;
+        int lugarFila = esq;
 
-        for (int x = 0; x < valores.length; x++) {
+        for (int x = esq; x < dir; x++) {
             if (valores[x] < pivo) {
                 guardaVal = valores[lugarFila];
                 valores[lugarFila] = valores[x];
@@ -69,11 +69,35 @@ public class AlgoritmosOrdenacao {
         int guardaVal2 = 0;
         guardaVal2 = valores[lugarFila];
         valores[lugarFila] = pivo;
-        valores[valores.length - 1] = guardaVal2;
+        valores[dir] = guardaVal2;
 
+        return lugarFila;
+    }
+
+    public static void QuickSort(int[] valores) {
+
+        Pilha oPilha = new Pilha(10);
+        Segmento seg = new Segmento(0, 7);
+        oPilha.empilha(seg);
+
+        while (!oPilha.vazia()) {
+
+            seg = oPilha.desempilha();
+            
+            int pivo = Particiona(valores, seg.esq, seg.dir);
+
+            if (oPilha.existeSegmentoNaDireita((seg.dir), pivo)) {
+                oPilha.empilha(new Segmento((pivo + 1), 7));
+                // Particiona(valores);
+            }
+
+            if (oPilha.existeSegmentoNaEsquerda((seg.esq), pivo)) {
+                oPilha.empilha(new Segmento(0, (pivo - 1)));
+                // Particiona(valores);
+            }
+        }
         for (int x = 0; x < valores.length; x++) {
             System.out.print(valores[x] + ";");
         }
     }
-
 }
