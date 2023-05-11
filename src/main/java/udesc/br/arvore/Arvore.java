@@ -45,37 +45,51 @@ public class Arvore {
     }
 
     public void caminhaPreFixado(No raiz) {
-        if (this.raiz == null) {
-        } else {
-            System.out.println(raiz.getValor());
-            if (raiz.getEsquerda() != null) {
-                caminhaPreFixado(raiz.getEsquerda());
-            } else {
-                System.out.println(raiz.getValor());
-                if (raiz.getDireita() != null) {
-                    caminhaPreFixado(raiz.getDireita());
-                } else {
-                    System.out.println(raiz.getValor());
-                }
-            }
+        if (raiz != null) {
+            System.out.println(raiz.getValor() + " ");
+            caminhaPreFixado(raiz.getEsquerda());
+            caminhaPreFixado(raiz.getDireita());
         }
     }
 
-public void caminhaPosFixado(No raiz) {
+    public void caminhaPosFixado(No raiz) {
+        if (raiz != null) {
+            caminhaPosFixado(raiz.getEsquerda());
+            caminhaPosFixado(raiz.getDireita());
+            System.out.println(raiz.getValor() + " ");
+        }
     }
 
     public void caminhaCentral(No raiz) {
+        if (raiz != null) {
+            caminhaCentral(raiz.getEsquerda());
+            System.out.println(raiz.getValor() + " ");
+            caminhaCentral(raiz.getDireita());
+        }
     }
 
     public boolean remove(No pai, No corrente, int valor) {
         return false;
     }
 
+    public No localizaRemove(No corrente, int valor) {
+        if (corrente == null) {
+            return corrente;
+        } else if (valor > corrente.getValor()) {
+            localizaRemove(raiz.getDireita(), valor);
+        } else {
+            if (valor > corrente.getValor()) {
+                localizaRemove(raiz.getEsquerda(), valor);
+            }
+        }
+        return corrente;
+    }
+
     /**
      * ****************************************
      * OUTRAS OPERA��ES ***************************************
      */
-    // 1. Retorna true se a �rvore n�o possui nenhum n�
+// 1. Retorna true se a �rvore n�o possui nenhum n�
     public boolean vazio() {
         return raiz == null;
     }
