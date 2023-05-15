@@ -69,27 +69,55 @@ public class Arvore {
     }
 
     public boolean remove(No pai, No corrente, int valor) {
-        return false;
-    }
-
-    public No localizaRemove(No corrente, int valor) {
-        if (corrente == null) {
-            return corrente;
-        } else if (valor > corrente.getValor()) {
-            localizaRemove(raiz.getDireita(), valor);
-        } else {
-            if (valor > corrente.getValor()) {
-                localizaRemove(raiz.getEsquerda(), valor);
+        //Nó folha
+        if (corrente.getEsquerda() == null && corrente.getDireita() == null) {
+            removeFolha(null, corrente);
+        } else { //Apenas um filho
+            if (corrente.getEsquerda() == null || corrente.getDireita() == null) {
+                removeGrau1(null, corrente);
+            } else { //Nó com dois filhos
+                removeGrau2ComSucessor(null, corrente);
+                //RemoveGrau2ComAntecessor(null, corrente);
             }
         }
-        return corrente;
+        return true;
+    }
+
+    public boolean removeFolha(No pai, No corrente) {
+        return true;
+    }
+
+    public boolean removeGrau1(No pai, No corrente) {
+        return true;
+    }
+
+    public boolean removeGrau2ComSucessor(No pai, No corrente) {
+        return true;
+    }
+
+    public boolean localizaRemove(No corrente, int valor) {
+        if (corrente == null) {
+            return false;
+        } else {
+            if (corrente.getValor() == valor) {
+                remove(null, corrente, valor);
+                return true;
+            } else if (valor > corrente.getValor()) {
+                localizaRemove(raiz.getDireita(), valor);
+            } else {
+                if (valor > corrente.getValor()) {
+                    localizaRemove(raiz.getEsquerda(), valor);
+                }
+            }
+        }
+        return true;
     }
 
     /**
      * ****************************************
      * OUTRAS OPERA��ES ***************************************
      */
-// 1. Retorna true se a �rvore n�o possui nenhum n�
+    // 1. Retorna true se a �rvore n�o possui nenhum n�
     public boolean vazio() {
         return raiz == null;
     }

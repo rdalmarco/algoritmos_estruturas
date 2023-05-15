@@ -28,8 +28,7 @@ public class Principal {
 		arvore.caminhaCentral(arvore.getRaiz());
                 System.out.println("--------");
 		arvore.caminhaPreFixado(arvore.getRaiz());
-                arvore.removeFolha(arvore.getRaiz(), 30);
-		//System.out.println(arvore.vazio());
+                		//System.out.println(arvore.vazio());
 		
 		//No no = arvore.localiza(arvore.getRaiz(), 335);
 		//if (no != null)
