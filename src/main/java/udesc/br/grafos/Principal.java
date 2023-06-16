@@ -114,8 +114,8 @@ public class Principal {
         System.out.println("---------LARGURA-----------------------");
         grafo.caminhaLargura();
         grafo.reset();
-        //System.out.println("---------PROFUNDIDADE-----------------------");
-        //grafo.caminhaProfundidade();
+        System.out.println("---------PROFUNDIDADE-----------------------");
+        grafo.caminhaProfundidade();
         //System.out.println("---------MENOR CAMINHO 1-7------------------");
         //grafo.menorCaminho(1, 7);
         //}

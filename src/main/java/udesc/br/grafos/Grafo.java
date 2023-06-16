@@ -148,7 +148,7 @@ public class Grafo {
             Vertice w = (Vertice) fila.get(0);
             List<Aresta> adjacencias = w.getAdjacencias();
             for (Aresta aresta : adjacencias) {
-                 w = aresta.destino;
+                w = aresta.destino;
                 if (w.visitado == false) {
                     w.visitado = true;
                     System.out.println(w.chave);
@@ -161,6 +161,32 @@ public class Grafo {
     }
 
     public void caminhaProfundidade() {
+        boolean teste = false;
+        List<Vertice> pilha = new ArrayList();
+        if (G != null) {
+            G.vertice.visitado = true;
+            System.out.println(G.vertice.chave);
+        }
+        pilha.add(G.vertice);
+        Vertice w = G.vertice;
+        while (!pilha.isEmpty()) {
+            teste = false;
+            List<Aresta> adjacencias = pilha.get(pilha.size() - 1).getAdjacencias();
+            for (Aresta aresta : adjacencias) {
+                w = aresta.destino;
+                if (w.visitado == false) {
+                    w.visitado = true;
+                    System.out.println(w.chave);
+                    pilha.add(w);
+                    teste = true;
+                    break;
+                }
+            }
+            if (!teste) {
+                pilha.remove(pilha.size() - 1);
+
+            }
+        }
     }
 
     private int[][] geraMatrizCustos() {
