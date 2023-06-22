@@ -190,13 +190,85 @@ public class Grafo {
     }
 
     private int[][] geraMatrizCustos() {
-        return null;
+        ArrayList<Aresta> adjacencias;
+        Iterator<Aresta> iterator;
+        int[][] matrizAdjacencias = new int[quantVertices + 1][quantVertices + 1];
+
+        if (G != null) {
+            No aux = G;
+            while (aux.prox != null) {
+                adjacencias = aux.vertice.getAdjacencias();
+                iterator = adjacencias.iterator();
+                while (iterator.hasNext()) {
+                    Aresta adj = iterator.next();
+                    matrizAdjacencias[aux.vertice.chave][adj.destino.chave] = adj.peso;
+                }
+                aux = aux.prox;
+            }
+            if (aux != null) {
+                adjacencias = aux.vertice.getAdjacencias();
+                iterator = adjacencias.iterator();
+                while (iterator.hasNext()) {
+                    Aresta adj = iterator.next();
+                    matrizAdjacencias[aux.vertice.chave][adj.destino.chave] = adj.peso;
+                }
+            }
+
+        }
+        return matrizAdjacencias;
     }
 
-    public void imprimeMenorCaminho(int origem, int destino, int[] caminhoMaisCurto) {
+    public void imprimeMenorCaminho(int origem, int destino, List<Vertice> caminhoMaisCurto) {
+        for (Vertice v : caminhoMaisCurto) {
+            System.out.println(v.chave);
+        }
     }
 
     public void menorCaminho(int origem, int destino) {
+        boolean[] visitados = new boolean[9];
+        int[] distanciaAcumulada = new int[9];
+        //gambi temporária
+        distanciaAcumulada[1] = 1000;
+        distanciaAcumulada[2] = 1000;
+        distanciaAcumulada[3] = 1000;
+        distanciaAcumulada[4] = 1000;
+        distanciaAcumulada[5] = 1000;
+        distanciaAcumulada[6] = 1000;
+        distanciaAcumulada[7] = 1000;
+        distanciaAcumulada[8] = 1000;
+        List<Vertice> result = new ArrayList();
+        int[][] matriz = geraMatrizCustos();
+        int teste1 = 0;
+        int teste2 = 0;
+
+        Vertice aux = getVertice(origem);
+        while (origem != destino) {
+            if (aux != null) {
+                for (int a = 1; a < matriz.length - 1; a++) {
+                    if (matriz[aux.chave][a] != 0) {
+                        if (distanciaAcumulada[aux.chave] > matriz[aux.chave][a]) {
+                            distanciaAcumulada[aux.chave] = matriz[aux.chave][a];
+                            teste1 = aux.chave;
+                            teste2 = a - 1;
+                        }
+                    }
+                }
+                aux.visitado = true;
+                visitados[aux.chave - 1] = true;
+                result.add(getVertice(matriz[teste1][teste2]));
+                for (int x = 0; x < distanciaAcumulada.length - 1; x++) {
+                    distanciaAcumulada[0] = 1000;
+                    if (distanciaAcumulada[x + 1] < distanciaAcumulada[x]) {
+                        if (visitados[x+1] == false) {
+                            aux = getVertice(matriz[aux.chave][x + 1]);
+                        }
+                    }
+                }
+            } else {
+                System.out.println("Origem inexistente");
+            }
+        }
+        imprimeMenorCaminho(1, 7, result);
 
     }
 

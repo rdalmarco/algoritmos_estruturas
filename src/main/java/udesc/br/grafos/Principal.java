@@ -104,20 +104,20 @@ public class Principal {
     public static void main(String[] args) {
         Grafo grafo = new Grafo();
 
-        criaGrafo1(grafo);
-        //criaGrafo2(grafo);
+        //criaGrafo1(grafo);
+        criaGrafo2(grafo);
 
         //grafo.print();
-        System.out.println("-------------------------------------");
+       // System.out.println("-------------------------------------");
 
         //try{
-        System.out.println("---------LARGURA-----------------------");
-        grafo.caminhaLargura();
-        grafo.reset();
-        System.out.println("---------PROFUNDIDADE-----------------------");
-        grafo.caminhaProfundidade();
-        //System.out.println("---------MENOR CAMINHO 1-7------------------");
-        //grafo.menorCaminho(1, 7);
+        //System.out.println("---------LARGURA-----------------------");
+        //grafo.caminhaLargura();
+        //grafo.reset();
+        //System.out.println("---------PROFUNDIDADE-----------------------");
+        //grafo.caminhaProfundidade();
+        System.out.println("---------MENOR CAMINHO 1-7------------------");
+        grafo.menorCaminho(1, 7);
         //}
         //catch (Exception e)
         //{
