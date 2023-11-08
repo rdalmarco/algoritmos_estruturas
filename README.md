@@ -1,3 +1,13 @@
 # algoritmos_estruturas
 
-estudos de desempenho e funcionamento de algoritmos e estruturas, pilhas, listas encadeadas, árvores e grafos
+**Estruturas implementadas:**
+** Pilha
+** Lista
+** Lista encadeada
+** Árvore
+** Grafo
+
+**Algoritmos implementados:**
+** Algoritmos de ordenação
+** Algoritmos para manipulação das estruturas implementadas
+** Algoritmos recursivos
